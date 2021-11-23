@@ -12,13 +12,27 @@ export class CadastroCreateComponent implements OnInit {
 
   cadastro: CadastroModel ={
     usuario: '',
-    senha: ' '
+    senha: ''
   }
 
    constructor(private cadastroService: CadastroService, private router: Router ) { }
 
   ngOnInit(): void {
   }
- 
+
+  createCadastro(): void{
+    this.cadastroService.create(this.cadastro).subscribe(() =>{
+    this.cadastroService.showMessege('Usuário Cadastro!')  
+    })
+  }
+
+  cancelarCadastro(): void {
+    this.router.navigate([''])
+  }
+
+  tabelaCadastro(): void{
+    this.router.navigate(['/cadastro/tabela'])
+
+  }
 
 }

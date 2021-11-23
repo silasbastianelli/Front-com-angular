@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "json-server --watch db.json --port 3001"
@@ -12,5 +11,7 @@
   "dependencies": {
     "ionic-native": "https://github.com/ionic-team/ionic-native/tarball/v3.5.0",
     "json-serve": "^0.16.1"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
