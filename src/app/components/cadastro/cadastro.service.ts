@@ -17,9 +17,9 @@ export class CadastroService {
   }
   showMessege(msg: string, isError: boolean = false): void{
     this.snackBar.open(msg, 'X', {
-      duration:600,
+      duration:6000,
       verticalPosition: "top",
-      panelClass: isError ? ['errorMsg'] : ['successMsg']
+      panelClass: isError ? ['errorMsg'] : ['successMsg'] //if ternário
     });
   }
 
@@ -32,32 +32,43 @@ export class CadastroService {
 
   errorMsg(e: any): Observable<any>{
     console.log(e);
-    this.showMessege('Erro', true);
+    this.showMessege('Deu Erro!!', true);
     return EMPTY
   }
+
+  // nao precisa pois 
+  /*
+  successMsg(e: any): Observable<any>{
+    console.log(e);
+    this.showMessege('Deu certo maroto!', false);
+    return EMPTY
+  }*/
 
   read(): Observable<CadastroModel[]>{
     return this.http.get<CadastroModel[]>(this.baseUrl);
   }
 
   readById(id: number): Observable<CadastroModel>{
-    const url ='${this.baseUrl}/${id}';
+    //const url ='${this.baseUrl}/${id}';
+    const url = this.baseUrl + "/" + id;
     return this.http.get<CadastroModel>(url);
   }
 
   updateCadastro(cadastro: CadastroModel): Observable<CadastroModel>{
-    const url = '${this.baseUrl}/${cadastro.id}';
-
+    const url = `${this.baseUrl}/${cadastro.id}`; // tem que ser crase
+    //const url = this.baseUrl + "/" + cadastro.id;
     alert("Tentou Atualizar?"); // teste >> chamou
-
     return this.http.put<CadastroModel>(url, cadastro);
+
+
   }
 
   deleteCadastro(id: number): Observable<CadastroModel>{
 
     alert("Tentou deletar?");// teste>>  NÃO chamou
 
-    const url = '${this.baseUrl}/${id}'; 
+    //const url = '${this.baseUrl}/${id}'; 
+    const url = this.baseUrl + "/" + id; 
     return this.http.delete<CadastroModel>(url);
   }
 

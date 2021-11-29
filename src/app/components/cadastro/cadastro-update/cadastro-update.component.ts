@@ -21,13 +21,18 @@ export class CadastroUpdateComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id')
     this.cadastroService.readById(id).subscribe(cadastro => {
       this.cadastro = cadastro
-    });
+    }/*error => {
+      console.log("mensagem de erro");
+
+    }*/
+    );
   }
 
   updateCadastro(): void{
      this.cadastroService.updateCadastro(this.cadastro).subscribe(() => {
-       this.cadastroService.showMessege('O usuário foi atualizado')
-       this.router.navigate(["/cadastro/tabela"]);
+       this.cadastroService.showMessege('O usuário foi atualizado');
+       //this.router.navigate(["/cadastro/tabela"]);
+       this.tabelasCadastro();
      });
   }
 

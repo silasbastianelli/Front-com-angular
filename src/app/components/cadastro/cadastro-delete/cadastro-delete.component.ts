@@ -28,7 +28,7 @@ export class CadastroDeleteComponent implements OnInit {
   deleteCadastro(): void{
     this.cadastroService.deleteCadastro(this.cadastro.id).subscribe(() =>{
       this.cadastroService.showMessege('Cadastro deletado')
-      
+      this.tabelasCadastro();  
     });
   }
 
