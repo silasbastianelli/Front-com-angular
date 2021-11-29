@@ -22,7 +22,7 @@ export class CadastroCreateComponent implements OnInit {
 
   createCadastro(): void{
     this.cadastroService.create(this.cadastro).subscribe(() =>{
-    this.cadastroService.showMessege('Usuário Cadastro!')  
+    this.cadastroService.showMessege('Usuário Cadastro!')
     })
   }
 
@@ -30,7 +30,7 @@ export class CadastroCreateComponent implements OnInit {
     this.router.navigate([''])
   }
 
-  tabelaCadastro(): void{
+  tabelasCadastro(): void{
     this.router.navigate(['/cadastro/tabela'])
 
   }

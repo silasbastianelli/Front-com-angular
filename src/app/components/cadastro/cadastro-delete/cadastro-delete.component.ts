@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CadastroModel } from '../cadastro.model';
 import { CadastroService } from '../cadastro.service';
- 
+
 
 @Component({
   selector: 'app-cadastro-delete',
@@ -11,7 +11,7 @@ import { CadastroService } from '../cadastro.service';
 })
 export class CadastroDeleteComponent implements OnInit {
 
-  cadastro: CadastroModel;
+  cadastro: CadastroModel = new CadastroModel;
 
   constructor(private cadastroService: CadastroService,
               private router: Router,
@@ -28,7 +28,7 @@ export class CadastroDeleteComponent implements OnInit {
   deleteCadastro(): void{
     this.cadastroService.deleteCadastro(this.cadastro.id).subscribe(() =>{
       this.cadastroService.showMessege('Cadastro deletado')
-      
+
     });
   }
 

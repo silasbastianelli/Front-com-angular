@@ -1,7 +1,8 @@
+import { CadastroModel } from './../cadastro.model';
 import { Component, OnInit } from '@angular/core';
 import { CadastroService } from '../cadastro.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CadastroModel } from '../cadastro.model';
+
 
 @Component({
   selector: 'app-cadastro-update',
@@ -10,18 +11,19 @@ import { CadastroModel } from '../cadastro.model';
 })
 export class CadastroUpdateComponent implements OnInit {
 
-  cadastro: CadastroModel;
+  cadastro: CadastroModel = new CadastroModel;
 
-  constructor(private cadastroService: CadastroService, 
-              private router: Router, 
+  constructor(private cadastroService: CadastroService,
+              private router: Router,
               private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id')
     this.cadastroService.readById(id).subscribe(cadastro => {
-      this.cadastro = cadastro
+      this.cadastro = cadastro;
     });
+
   }
 
   updateCadastro(): void{
@@ -35,7 +37,7 @@ export class CadastroUpdateComponent implements OnInit {
     this.router.navigate(['/cadastro'])
 
   }
-  
+
   tabelasCadastro(): void{
     this.router.navigate(['/cadastro/tabela'])
 

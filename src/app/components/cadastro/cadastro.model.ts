@@ -1,5 +1,5 @@
-export interface CadastroModel {
+export class CadastroModel {
     id?: number
-    usuario: string 
-    senha: string 
+    usuario: string
+    senha: string
 }

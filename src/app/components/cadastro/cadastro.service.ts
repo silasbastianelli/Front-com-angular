@@ -13,21 +13,22 @@ export class CadastroService {
 
   baseUrl = "http://localhost:3001/login";
 
-  constructor(private snackBar: MatSnackBar, private http: HttpClient) { 
+  constructor(private snackBar: MatSnackBar, private http: HttpClient) {
   }
   showMessege(msg: string, isError: boolean = false): void{
     this.snackBar.open(msg, 'X', {
-      duration:600,
+      duration: 6000,
       verticalPosition: "top",
       panelClass: isError ? ['errorMsg'] : ['successMsg']
     });
   }
 
   create(cadastro: CadastroModel): Observable<CadastroModel>{
-    return this.http.post<CadastroModel>(this.baseUrl, cadastro).pipe(
-      map((obj) => obj),
-      catchError(e => this.errorMsg(e))
-    )
+    return this.http.post<CadastroModel>(this.baseUrl, cadastro)
+  }
+
+  read(): Observable<CadastroModel[]>{
+    return this.http.get<CadastroModel[]>(this.baseUrl);
   }
 
   errorMsg(e: any): Observable<any>{
@@ -36,17 +37,13 @@ export class CadastroService {
     return EMPTY
   }
 
-  read(): Observable<CadastroModel[]>{
-    return this.http.get<CadastroModel[]>(this.baseUrl);
-  }
-
   readById(id: number): Observable<CadastroModel>{
-    const url ='${this.baseUrl}/${id}';
+    const url = this.baseUrl + "/" + id;
     return this.http.get<CadastroModel>(url);
   }
 
   updateCadastro(cadastro: CadastroModel): Observable<CadastroModel>{
-    const url = '${this.baseUrl}/${cadastro.id}';
+    const url = this.baseUrl + "/" + cadastro.id;
 
     alert("Tentou Atualizar?"); // teste >> chamou
 
@@ -57,7 +54,7 @@ export class CadastroService {
 
     alert("Tentou deletar?");// teste>>  NÃO chamou
 
-    const url = '${this.baseUrl}/${id}'; 
+    const url = this.baseUrl + "/" + id;
     return this.http.delete<CadastroModel>(url);
   }
 
